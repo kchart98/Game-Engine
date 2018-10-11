@@ -1,23 +1,29 @@
+#ifndef COMPONENT_H
+#define COMPONENT_H
+
 #include <vector>
 #include <memory>
 
-#pragma once
-#ifdef COMPONENT_H
-#endif
-#define COMPONENT_H
+class Entity;
+class Core;
 
 class Component
 {
+	friend class Entity;
+
 public:
-	//virtual void ~Component();
+	virtual ~Component();
+	std::shared_ptr<Core> getCore();
+	std::shared_ptr<Entity> getEntity();
+
+private:
+	std::weak_ptr<Entity> entity;
+	bool began;
+
+	virtual void onInit();
+	virtual void onBegin();
 	virtual void onTick();
-
-	template <typename T>
-	std::shared_ptr<T> addComponent()
-	{
-		std::shared_ptr<T> rtn = std::make_shared<T>();
-		components.push_back(rtn);
-		return rtn;
-	}
-
+	virtual void onDisplay();
 };
+
+#endif
