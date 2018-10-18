@@ -36,6 +36,10 @@ add_library(HoneyComb
   src/HoneyComb/Core.cpp
   src/HoneyComb/Entity.cpp
   src/HoneyComb/Component.cpp
+  src/HoneyComb/MeshRender.cpp
+  src/HoneyComb/Shaders.cpp
+  src/HoneyComb/VertexBuffer.cpp
+  src/HoneyComb/VertexArray.cpp
 )
 
 if(MSVC)

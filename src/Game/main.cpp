@@ -1,6 +1,5 @@
 #include <HoneyComb/HoneyComb.h>
 #include <iostream>
-#include <memory>
 
 class TestScreen : public Component
 {
@@ -30,9 +29,12 @@ public:
 int main()
 {
 	std::shared_ptr<Core> core = Core::initialize();
+	std::shared_ptr<Entity> background = core->addEntity();
 	std::shared_ptr<Entity> player = core->addEntity();
-	std::shared_ptr<TestScreen> ts = player->addComponent<TestScreen>("Test");
-
+	
+	std::shared_ptr<TestScreen> ts = background->addComponent<TestScreen>("Test");
+	std::shared_ptr<MeshRenderer> triangle = player->addComponent<MeshRenderer>();
+	
 	core->start();
 		
 	return 0;

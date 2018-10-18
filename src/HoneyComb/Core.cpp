@@ -3,8 +3,8 @@
 
 #include <GL/glew.h>
 
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 600
+#define WINDOW_WIDTH 1280
+#define WINDOW_HEIGHT 720
 
 std::shared_ptr<Core> Core::initialize() //Initialize window
 {
@@ -56,7 +56,7 @@ void Core::start()
 			(*it)->tick();
 		}
 
-		glClearColor(0.0f, 0.3f, 0.0f, 1.0f);
+		glClearColor(1.0f, 0.90f, 0.67f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		for (std::vector<std::shared_ptr<Entity> >::iterator it = entities.begin(); it != entities.end(); it++)
