@@ -17,6 +17,11 @@ void MeshRenderer::onInit()
 	colors->add(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 	colors->add(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 
+	std::shared_ptr<VertexBuffer> texCoords = std::make_shared<VertexBuffer>();
+	texCoords->add(glm::vec4(0.0f, 0.0f, 1.0f, 1.0f));
+	texCoords->add(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+	texCoords->add(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+
 	shape = std::make_shared<VertexArray>();
 	shape->setBuffer("in_Position", positions);
 	shape->setBuffer("in_Color", colors);

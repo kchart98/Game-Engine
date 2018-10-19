@@ -23,6 +23,12 @@ public:
 	{
 		//std::cout << "onDisplay" << std::endl;
 	}
+
+	void onGUI()
+	{
+		//std::cout << "onGUI" << std::endl;
+	}
+
 };
 
 

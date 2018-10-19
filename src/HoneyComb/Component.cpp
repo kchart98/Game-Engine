@@ -23,6 +23,10 @@ void Component::onDisplay()
 {
 }
 
+void Component::onGUI()
+{
+}
+
 
 std::shared_ptr<Entity> Component::getEntity()
 {

@@ -24,6 +24,7 @@ private:
 	virtual void onBegin();
 	virtual void onTick();
 	virtual void onDisplay();
+	virtual void onGUI();
 };
 
 #endif

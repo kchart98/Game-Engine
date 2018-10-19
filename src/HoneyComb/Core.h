@@ -4,6 +4,7 @@
 #include <vector>
 
 class Entity;
+class Resources;
 
 class Core
 {
@@ -17,6 +18,9 @@ public:
 
 private:
 	std::vector<std::shared_ptr<Entity> > entities;
+	std::shared_ptr<Resources> resources;
+
+
 	std::weak_ptr<Core> self;
 	bool running;
 

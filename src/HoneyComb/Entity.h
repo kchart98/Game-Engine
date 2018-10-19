@@ -23,6 +23,7 @@ private:
 
 	void tick();
 	void display();
+	void GUI();
 
 public:
 
@@ -46,7 +47,6 @@ public:
 	}
 
 	//Add Component
-
 	template <typename T>
 	std::shared_ptr<T> addComponent()
 	{

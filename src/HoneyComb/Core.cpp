@@ -51,20 +51,28 @@ void Core::start()
 			}
 		}
 		
+		
 		for (std::vector<std::shared_ptr<Entity> >::iterator it = entities.begin(); it != entities.end(); it++)
 		{
 			(*it)->tick();
 		}
 
 		glClearColor(1.0f, 0.90f, 0.67f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_TEST);
 
 		for (std::vector<std::shared_ptr<Entity> >::iterator it = entities.begin(); it != entities.end(); it++)
 		{
 			(*it)->display();
 		}
+				
+		//glDisable (GL_DEPTH_TEST);
+		for (std::vector<std::shared_ptr<Entity> >::iterator it = entities.begin(); it != entities.end(); it++)
+		{
+			(*it)->GUI();
+		}
 
 		SDL_GL_SwapWindow(window);
+	
 	}
 }
 
@@ -80,5 +88,4 @@ std::shared_ptr<Entity> Core::addEntity()
 	rtn->self = rtn;
 	rtn->core = self;
 	return rtn;
-
 }
