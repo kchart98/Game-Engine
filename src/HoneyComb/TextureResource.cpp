@@ -3,7 +3,7 @@
 void TextureResource::setPixel(glm::vec3 value)
 {
 
-
+	
 
 }
 

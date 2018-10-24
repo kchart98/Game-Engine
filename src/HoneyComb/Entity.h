@@ -12,7 +12,6 @@ class Core;
 
 class Entity 
 {
-
 	friend class Core;
 
 private:

@@ -13,6 +13,9 @@ void Component::onTick()
 
 void Component::onInit() 
 {
+
+
+
 }
 
 void Component::onBegin()

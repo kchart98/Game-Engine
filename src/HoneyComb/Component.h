@@ -6,6 +6,7 @@
 
 class Entity;
 class Core;
+class Resources;
 
 class Component
 {
@@ -15,6 +16,7 @@ public:
 	virtual ~Component();
 	std::shared_ptr<Core> getCore();
 	std::shared_ptr<Entity> getEntity();
+	std::shared_ptr<Resources> getResources();
 
 private:
 	std::weak_ptr<Entity> entity;
