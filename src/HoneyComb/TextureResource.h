@@ -9,8 +9,9 @@ class TextureResource
 	int type;
 	bool dirty;
 
-public:
+private:
 
+	virtual ~TextureResource();
 	void setPixel(glm::vec3 value);
 	void setPixel(glm::vec4 value);
 	GLuint getId();

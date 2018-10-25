@@ -14,8 +14,6 @@ void Component::onTick()
 void Component::onInit() 
 {
 
-
-
 }
 
 void Component::onBegin()
@@ -39,4 +37,14 @@ std::shared_ptr<Entity> Component::getEntity()
 std::shared_ptr<Core> Component::getCore()
 {
 	return getEntity()->getCore();
+}
+
+std::shared_ptr<Resources> Component::getResources()
+{
+	return 
+}
+
+std::shared_ptr<Transform> Component::getTransform()
+{
+	return
 }

@@ -1,6 +1,6 @@
 #include "TextureResource.h"
 #include "Shaders.h"
-//#include "Mesh.h"
+#include "Mesh.h"
 
 #include <string>
 #include <memory>

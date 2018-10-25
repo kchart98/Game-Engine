@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <memory>
+#include "MeshRenderer.h"
+#include "Transform.h"
 
 class Entity;
 class Core;
@@ -17,6 +19,7 @@ public:
 	std::shared_ptr<Core> getCore();
 	std::shared_ptr<Entity> getEntity();
 	std::shared_ptr<Resources> getResources();
+	std::shared_ptr<Transform> getTransform();
 
 private:
 	std::weak_ptr<Entity> entity;

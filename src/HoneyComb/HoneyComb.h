@@ -1,5 +1,5 @@
 #include "Core.h"
 #include "Entity.h"
 #include "Component.h"
-#include "MeshRender.h"
+#include "MeshRenderer.h"
 #include "Resources.h"

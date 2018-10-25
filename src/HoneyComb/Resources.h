@@ -3,6 +3,7 @@
 #include <list>
 #include <memory>
 #include <iostream>
+//#include <stb_image/stb_image.h>
 
 class Resources
 {
@@ -11,7 +12,7 @@ class Resources
 	
 public:
 
-	/*Get Resorce?
+	//Get Resources
 	template <typename T>
 	std::shared_ptr<T> getResources()
 	{
@@ -27,8 +28,6 @@ public:
 
 		throw std::exception();
 	}
-	*/
-
 
 	//Load Resource
 	template <typename T>
@@ -57,6 +56,19 @@ public:
 
 		return rtn;
 
+	}
+
+	template <typename T, typename A, typename B>
+	std::shared_ptr<T> create(A a, B b)
+	{
+		std::shared_ptr<T> rtn = std::make_shared<T>(); \
+		rtn->entity = self; \
+		rtn->began = false; \
+
+		resources.push_back(rtn);
+		rtn->onInit();
+
+		return rtn;
 	}
 	
 };
