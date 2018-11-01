@@ -1,4 +1,4 @@
-#include "MeshRender.h"
+#include "MeshRenderer.h"
 #include "VertexArray.h"
 #include "VertexBuffer.h"
 #include "Shaders.h"
@@ -22,16 +22,26 @@ void MeshRenderer::onInit()
 	texCoords->add(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 	texCoords->add(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 
-	shape = std::make_shared<VertexArray>();
-	shape->setBuffer("in_Position", positions);
-	shape->setBuffer("in_Color", colors);
+	//shape = std::make_shared<VertexArray>();
+	//shape->setBuffer("in_Position", positions);
+	//shape->setBuffer("in_Color", colors);
 
 	shader = std::make_shared<ShaderProgram>("../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
 }
 
 void MeshRenderer::onDisplay()
 {
-	shader->setUniform("in_Model", glm::mat4(1.0f));
-	shader->setUniform("in_Projection", glm::mat4(1.0f));
-	shader->draw(*shape);
+	//shader->setUniform("in_Model", glm::mat4(1.0f));
+	//shader->setUniform("in_Projection", glm::mat4(1.0f));
+	//shader->draw(*shape);
+}
+
+void MeshRenderer::setMesh(std::weak_ptr<MeshResource> model)
+{
+	//shader->setUniform("in_Model", model);
+}
+
+void MeshRenderer::setTexture(std::weak_ptr<TextureResource> texture)
+{
+	shader->setUniform("in_Texture", texture);
 }

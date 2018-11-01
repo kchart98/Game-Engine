@@ -46,6 +46,7 @@ add_library(HoneyComb
   src/HoneyComb/Transform.cpp
   src/HoneyComb/Material.cpp
   src/HoneyComb/Mesh.cpp
+  contrib/stb_image/stb_image.cpp
 )
 
 if(MSVC)

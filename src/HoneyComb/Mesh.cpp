@@ -1,17 +1,11 @@
 #include "Mesh.h"
 
-Mesh::~Mesh()
+MeshResource::~MeshResource()
 {
 
 }
 
-void Mesh::addFace(Face& face)
-{
-
-}
-
-
-GLuint Mesh::getId()
+GLuint MeshResource::getId()
 {
 	return id;
 }

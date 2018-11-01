@@ -3,15 +3,16 @@
 #include <vector>
 #include <iostream>
 
-class Mesh
+class MeshResource
 {
 	bool dirty;
-	std::vector<Face>;
+	GLuint id;
+	//std::vector<Face>;
 
 private:
 
-	virtual ~Mesh();
-	void addFace(Face& face);
+	virtual ~MeshResource();
+	//void addFace(Face& face);
 	GLuint getId();
 
 };

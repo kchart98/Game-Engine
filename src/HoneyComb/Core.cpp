@@ -89,3 +89,8 @@ std::shared_ptr<Entity> Core::addEntity()
 	rtn->core = self;
 	return rtn;
 }
+
+std::shared_ptr<Resources> Core::getResources()
+{
+	return resources;
+}

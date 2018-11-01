@@ -3,6 +3,8 @@
 
 class VertexArray;
 class ShaderProgram;
+class TextureResource;
+class MeshResource;
 
 class MeshRenderer : public Component
 {
@@ -12,7 +14,8 @@ class MeshRenderer : public Component
 public:
 	void onInit();
 
-	//void setMesh();
+	void setMesh(std::weak_ptr<MeshResource>);
+	void setTexture(std::weak_ptr<TextureResource>);
 
 	//getMesh
 	//getMaterial
@@ -22,6 +25,6 @@ private:
 	void onDisplay();
 	
 	//std::shared_ptr<VertexArray> shape;
-	//std::shared_ptr<ShaderProgram> shader;
+	std::shared_ptr<ShaderProgram> shader;
 
 };

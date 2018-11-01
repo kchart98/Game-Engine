@@ -40,9 +40,9 @@ int main()
 	
 	std::shared_ptr<TestScreen> ts = background->addComponent<TestScreen>("Test");
 	std::shared_ptr<MeshRenderer> triangle = player->addComponent<MeshRenderer>();
-
-	//shared<Texture> t = getResources()->load<Texture>("images/player");
 	
+	std::shared_ptr<TextureResource> t = core->getResources()->load<TextureResource>("../resources/images/player.png");
+	triangle->setTexture(t);
 	
 	core->start();
 		

@@ -9,7 +9,7 @@ class MaterialAttribute
 	std::string name;
 	int type;
 	float floatValue;
-	std::weak_ptr<TextureResource>;
+	std::weak_ptr<TextureResource> textureValue;
 	
 };
 
