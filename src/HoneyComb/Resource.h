@@ -1,13 +1,24 @@
-#include "TextureResource.h"
-#include "Shaders.h"
-#include "Mesh.h"
+#ifndef RESOURCE_H
+#define RESOURCE_H
 
 #include <string>
 #include <memory>
 
+class Resources;
+
 class Resource
 {
+	friend class Resources;
 
-	std::string path;	
+	virtual void onLoad(std::string path);
+	void load(std::string path);
+
+	std::string path;
+
+public:
+	
+	std::string getPath();
 
 };
+
+#endif

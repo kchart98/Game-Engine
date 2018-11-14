@@ -1,4 +1,4 @@
-#include "VertexArray.h"
+#include "Mesh.h"
 #include "Shaders.h"
 #include <glm/ext.hpp>
 #include <fstream>
@@ -87,7 +87,7 @@ ShaderProgram::ShaderProgram(std::string vert, std::string frag)
 	glDeleteShader(fragmentShaderId);
 }
 
-void ShaderProgram::draw(VertexArray& vertexArray)
+void ShaderProgram::draw(MeshResource& vertexArray)
 {
 	glUseProgram(id);
 	glBindVertexArray(vertexArray.getId());
@@ -126,6 +126,20 @@ void ShaderProgram::setUniform(std::string uniform, float value)
 	glUseProgram(0);
 }
 
+void ShaderProgram::setUniform(std::string uniform, int value)
+{
+	GLint uniformId = glGetUniformLocation(id, uniform.c_str());
+
+	if (uniformId == -1)
+	{
+		throw std::exception();
+	}
+
+	glUseProgram(id);
+	glUniform1i(uniformId, value);
+	glUseProgram(0);
+}
+
 void ShaderProgram::setUniform(std::string uniform, glm::mat4 value)
 {
 	GLint uniformId = glGetUniformLocation(id, uniform.c_str());
@@ -140,7 +154,7 @@ void ShaderProgram::setUniform(std::string uniform, glm::mat4 value)
 	glUseProgram(0);
 }
 
-void ShaderProgram::setUniform(std::string uniform, std::weak_ptr<TextureResource>)
+void ShaderProgram::setUniform(std::string uniform, std::weak_ptr<TextureResource> texture)
 {
 	GLint uniformId = glGetUniformLocation(id, uniform.c_str());
 

@@ -8,6 +8,7 @@
 
 std::shared_ptr<Core> Core::initialize() //Initialize window
 {
+
 	std::shared_ptr<Core> rtn = std::make_shared<Core>();
 	rtn->running = false;
 	rtn->self = rtn;
@@ -29,6 +30,29 @@ std::shared_ptr<Core> Core::initialize() //Initialize window
 
 	if (glewInit() != GLEW_OK)
 	{
+		throw std::exception();
+	}
+
+	//Initilise Audio
+	rtn->device = alcOpenDevice(NULL);
+
+	if (!rtn->device)
+	{
+		throw std::exception();
+	}
+
+	rtn->context = alcCreateContext(rtn->device, NULL);
+
+	if (!rtn->context)
+	{
+		alcCloseDevice(rtn->device);
+		throw std::exception();
+	}
+
+	if (!alcMakeContextCurrent(rtn->context))
+	{
+		alcDestroyContext(rtn->context);
+		alcCloseDevice(rtn->device);
 		throw std::exception();
 	}
 
@@ -93,4 +117,16 @@ std::shared_ptr<Entity> Core::addEntity()
 std::shared_ptr<Resources> Core::getResources()
 {
 	return resources;
+}
+
+
+std::shared_ptr<Audio> Core::getAudio()
+{
+	return audio;
+}
+
+
+std::shared_ptr<Keyboard> Core::getKeyboard()
+{
+	return keyboard;
 }

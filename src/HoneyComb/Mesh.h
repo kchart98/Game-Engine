@@ -1,18 +1,29 @@
+#include "Resource.h"
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <vector>
+#include <fstream>
 #include <iostream>
 
-class MeshResource
+class VertexBuffer;
+class MeshRenderer;
+class TextureResource;
+
+class MeshResource : public Resource
 {
-	bool dirty;
+	friend class MeshRenderer;
+
 	GLuint id;
-	//std::vector<Face>;
+	std::vector<VertexBuffer *> buffers;
+	
+	void splitStringWhitespace(std::string& input, std::vector<std::string>& output);
+	void splitString(std::string& input, char splitter, std::vector<std::string>& output);
+	
+public:
 
-private:
-
-	virtual ~MeshResource();
-	//void addFace(Face& face);
+	void setBuffer(std::string attribute, VertexBuffer *buffer);
+	void onLoad(std::string path);
+	int getVertexCount();
 	GLuint getId();
 
 };

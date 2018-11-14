@@ -1,46 +1,52 @@
 #include "Resource.h"
-
-#include <list>
+#include <vector>
 #include <memory>
+#include <string>
 #include <iostream>
-#include <stb_image/stb_image.h>
 
 class Resources
 {
-	std::list<std::shared_ptr<Resource>> resources;
-	
-public:
 
-	//Load Resource
+private:
+
+	std::vector<std::shared_ptr<Resource>> resourcesList;
+
+public:
 	template <typename T>
 	std::shared_ptr<T> load(std::string path)
 	{
-		std::shared_ptr<T> rtn = std::make_shared<T>(); 
+		for (size_t i = 0; i < resourcesList.size(); i++)
+		{
+			if (resourcesList.at(i)->getPath() == path)
+			{
+				std::shared_ptr<T> rtn = std::dynamic_pointer_cast<T>(resourcesList.at(i));
+
+				if (!rtn)
+				{
+					throw std::exception();
+				}
+
+				return rtn;
+			}
+		}
+
+		std::shared_ptr<T> rtn = std::make_shared<T>();
 		rtn->load(path);
-		return rtn;
-	}
+		resourcesList.push_back(rtn);
 
-
-	//Create resource
-	template <typename T>
-	std::shared_ptr<T> create()
-	{
-		std::shared_ptr<T> rtn = std::make_shared<T>(); 
-
-
-		resources.push_back(rtn);
 		return rtn;
 
 	}
 
+	/*
 	template <typename T, typename A, typename B>
 	std::shared_ptr<T> create(A a, B b)
 	{
-		std::shared_ptr<T> rtn = std::make_shared<T>(); 
-
-
-		resources.push_back(rtn);
+		std::shared_ptr<T> rtn = std::make_shared<T>();
+		rtn->platform = platform;
+		rtn->onCreate(a, b);
 		return rtn;
 	}
-	
+	*/
+
 };

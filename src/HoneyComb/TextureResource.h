@@ -1,22 +1,28 @@
+#include "Resource.h"
+
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <vector>
 #include <iostream>
 #include <stb_image/stb_image.h>
 
-class TextureResource
+class MeshRenderer;
+
+class TextureResource : public Resource
 {
+	friend class MeshRenderer;
+
 	GLuint id;
-	int type;
-	bool dirty;
 	glm::vec2 size;
+	void onLoad(std::string path);
 
+	std::shared_ptr<TextureResource> data;
+	//int type;
+	//bool dirty;
+		
 private:
-
-	virtual ~TextureResource();
-	void setPixel(glm::vec3 value);
-	void setPixel(glm::vec4 value);
+	//void onCreate(int width, int height);
 	GLuint getId();
-	void load(std::string path);
-
+	glm::vec2 getSize();
+	
 };

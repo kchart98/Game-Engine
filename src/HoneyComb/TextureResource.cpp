@@ -1,18 +1,12 @@
 #include "TextureResource.h"
 
-TextureResource::~TextureResource()
-{
-
-
-}
-
-void TextureResource::load(std::string path)
+void TextureResource::onLoad(std::string path)
 {
 	int w = 0;
 	int h = 0;
 	int channels = 0;
 
-	unsigned char *data = stbi_load(path.c_str(), &w, &h, &channels, 4);
+	unsigned char *data = stbi_load(std::string(path).c_str(), &w, &h, &channels, 4);
 
 	if (!data)
 	{
@@ -38,21 +32,14 @@ void TextureResource::load(std::string path)
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void TextureResource::setPixel(glm::vec3 value)
-{
-
-	
-
-}
-
-void TextureResource::setPixel(glm::vec4 value)
-{
-
-
-
-}
-
 GLuint TextureResource::getId()
 {
 	return id;
 }
+
+glm::vec2 TextureResource::getSize()
+{
+	return size;
+}
+
+
