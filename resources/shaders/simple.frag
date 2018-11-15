@@ -1,5 +1,3 @@
-varying vec4 ex_Color;
-
 uniform sampler2D in_Texture;
 varying vec2 ex_TexCoord;
 

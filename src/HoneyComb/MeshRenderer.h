@@ -14,16 +14,16 @@ class MeshRenderer : public Component
 public:
 	void onInit();
 	void onInit(std::shared_ptr<MeshResource> model);
-	void setMesh(std::weak_ptr<MeshResource>);
 
+	void setMesh(std::weak_ptr<MeshResource>);
 	void setTexture(std::weak_ptr<TextureResource>);
 	std::weak_ptr<MeshResource> getMesh();
 
 	//getMaterial
 	
-
 private:
-		
+
+	float angle = 0;
 	std::shared_ptr<ShaderProgram> shader;
 
 };

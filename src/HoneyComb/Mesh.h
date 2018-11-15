@@ -14,15 +14,16 @@ class MeshResource : public Resource
 	friend class MeshRenderer;
 
 	GLuint id;
+	bool dirty;
 	std::vector<VertexBuffer *> buffers;
 	
 	void splitStringWhitespace(std::string& input, std::vector<std::string>& output);
 	void splitString(std::string& input, char splitter, std::vector<std::string>& output);
 	
 public:
-
-	void setBuffer(std::string attribute, VertexBuffer *buffer);
+		
 	void onLoad(std::string path);
+	void setBuffer(std::string attribute, VertexBuffer *buffer);
 	int getVertexCount();
 	GLuint getId();
 

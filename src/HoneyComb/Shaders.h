@@ -18,7 +18,7 @@ class ShaderProgram
 
 public:
 	ShaderProgram(std::string vert, std::string frag);
-	void draw(MeshResource& vertexArray);
+	void draw(std::weak_ptr<MeshResource> mesh);
 
 	void setUniform(std::string uniform, glm::vec4 value);
 	void setUniform(std::string uniform, float value);

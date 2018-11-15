@@ -179,7 +179,7 @@ void MeshResource::setBuffer(std::string attribute, VertexBuffer *buffer)
 		throw std::exception();
 	}
 
-	//dirty = true;
+	dirty = true;
 }
 
 int MeshResource::getVertexCount()
@@ -194,5 +194,30 @@ int MeshResource::getVertexCount()
 
 GLuint MeshResource::getId()
 {
+	if (dirty)
+	{
+		glBindVertexArray(id);
+
+		for (size_t i = 0; i < buffers.size(); i++)
+		{
+			if (buffers.at(i))
+			{
+				glBindBuffer(GL_ARRAY_BUFFER, buffers.at(i)->getId());
+
+				glVertexAttribPointer(i, buffers.at(i)->getComponents(), GL_FLOAT, GL_FALSE, buffers.at(i)->getComponents() * sizeof(GLfloat), (void *)0);
+
+				glEnableVertexAttribArray(i);
+			}
+			else
+			{
+				glDisableVertexAttribArray(i);
+			}
+		}
+
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindVertexArray(0);
+		dirty = false;
+	}
+
 	return id;
 }

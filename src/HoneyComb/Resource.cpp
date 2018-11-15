@@ -1,4 +1,5 @@
 #include "Resource.h"
+#include <GL/glew.h>
 
 void Resource::onLoad(std::string path)
 {

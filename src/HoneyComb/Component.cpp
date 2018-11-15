@@ -2,32 +2,11 @@
 #include "Entity.h"
 #include <iostream>
 
-Component::~Component()
-{
-}
-
-void Component::onTick()
-{
-	std::cout << "Hello World" << std::endl;
-}
-
-void Component::onInit() 
-{
-
-}
-
-void Component::onBegin()
-{
-}
-
-void Component::onDisplay()
-{
-}
-
-void Component::onGUI()
-{
-}
-
+void Component::onInit() { }
+void Component::onBegin() { }
+void Component::onTick(){ }
+void Component::onDisplay() { }
+void Component::onGui() { }
 
 std::shared_ptr<Entity> Component::getEntity()
 {

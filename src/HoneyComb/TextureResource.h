@@ -15,14 +15,13 @@ class TextureResource : public Resource
 	GLuint id;
 	glm::vec2 size;
 	void onLoad(std::string path);
-
 	std::shared_ptr<TextureResource> data;
-	//int type;
-	//bool dirty;
-		
-private:
-	//void onCreate(int width, int height);
-	GLuint getId();
 	glm::vec2 getSize();
+
+	//void onCreate(int width, int height);	
+
+public:
+
+	GLuint getId();
 	
 };

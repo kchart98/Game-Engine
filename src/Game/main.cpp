@@ -41,13 +41,13 @@ int main()
 	std::shared_ptr<TestScreen> ts = background->addComponent<TestScreen>("Test");
 	
 	std::shared_ptr<MeshResource> model = core->getResources()->load<MeshResource>("../resources/models/curuthers/curuthers.obj");
-	std::shared_ptr<TextureResource> tex = core->getResources()->load<TextureResource>("../resources/images/player.png");
+	std::shared_ptr<TextureResource> tex = core->getResources()->load<TextureResource>("../resources/images/curuthers_diffuse.png");
 
 	std::shared_ptr<MeshRenderer> modelRenderer = player->addComponent<MeshRenderer>(model);
 	modelRenderer->setTexture(tex);
 	
-	std::shared_ptr<Audio> audio = std::make_shared<Audio>("../resources/audio/dixie_horn.ogg");
-	audio->play;
+	//std::shared_ptr<Audio> audio = std::make_shared<Audio>("../resources/audio/dixie_horn.ogg");
+	//audio->play;
 
 	core->start();
 		

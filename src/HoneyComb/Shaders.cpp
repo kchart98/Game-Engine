@@ -1,5 +1,7 @@
 #include "Mesh.h"
 #include "Shaders.h"
+#include "TextureResource.h"
+
 #include <glm/ext.hpp>
 #include <fstream>
 #include <iostream>
@@ -66,7 +68,6 @@ ShaderProgram::ShaderProgram(std::string vert, std::string frag)
 	glAttachShader(id, vertexShaderId);
 	glAttachShader(id, fragmentShaderId);
 	glBindAttribLocation(id, 0, "in_Position");
-	glBindAttribLocation(id, 1, "in_Color");
 
 	if (glGetError() != GL_NO_ERROR)
 	{
@@ -87,12 +88,32 @@ ShaderProgram::ShaderProgram(std::string vert, std::string frag)
 	glDeleteShader(fragmentShaderId);
 }
 
-void ShaderProgram::draw(MeshResource& vertexArray)
+void ShaderProgram::draw(std::weak_ptr<MeshResource> mesh)
 {
 	glUseProgram(id);
-	glBindVertexArray(vertexArray.getId());
+	glBindVertexArray(mesh.lock()->getId());
+	
+	for (size_t i = 0; i < samplers.size(); i++)
+	{
+		glActiveTexture(GL_TEXTURE0 + i);
 
-	glDrawArrays(GL_TRIANGLES, 0, vertexArray.getVertexCount());
+		if (samplers.at(i).texture.lock())
+		{
+			glBindTexture(GL_TEXTURE_2D, samplers.at(i).texture.lock()->getId());
+		}
+		else
+		{
+			glBindTexture(GL_TEXTURE_2D, 0);
+		}
+	}
+
+	glDrawArrays(GL_TRIANGLES, 0, mesh.lock()->getVertexCount());
+
+	for (size_t i = 0; i < samplers.size(); i++)
+	{
+		glActiveTexture(GL_TEXTURE0 + i);
+		glBindTexture(GL_TEXTURE_2D, 0);
+	}
 
 	glBindVertexArray(0);
 	glUseProgram(0);
