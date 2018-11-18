@@ -8,8 +8,11 @@
 #define KEY_RIGHT SDLK_RIGHT
 #define KEY_SPACE SDLK_SPACE
 
+class Core;
+
 class Keyboard
 {
+	friend class Core;
 	std::vector<double> keys;
 	std::vector<double> pressedKeys;
 

@@ -1,6 +1,8 @@
 #include "Core.h"
 #include "Entity.h"
 #include "Resources.h"
+#include "Keyboard.h"
+#include "Audio.h"
 
 #include <GL/glew.h>
 
@@ -14,6 +16,7 @@ std::shared_ptr<Core> Core::initialize() //Initialize window
 	rtn->running = false;
 	rtn->self = rtn;
 	rtn->resources = std::make_shared<Resources>();
+	rtn->keyboard = std::make_shared<Keyboard>();
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -70,9 +73,39 @@ void Core::start()
 		{
 			if (event.type == SDL_QUIT)
 			{
-				running = false;
+				running = true;
 			}
-		}		
+			else if (event.type == SDL_KEYDOWN)
+			{
+				double key = event.key.keysym.sym;
+				keyboard->keys.push_back(key);
+				keyboard->pressedKeys.push_back(key);
+			}
+			else if (event.type == SDL_KEYUP)
+			{
+				double key = event.key.keysym.sym;
+
+				for (std::vector<double>::iterator kit = keyboard->keys.begin();
+					kit != keyboard->keys.end();)
+				{
+					if (*kit == key)
+					{
+						kit = keyboard->keys.erase(kit);
+					}
+					else
+					{
+						kit++;
+					}
+				}
+			}
+		}
+
+		if (keyboard->isKeyDown(KEY_LEFT))
+		{
+			std::shared_ptr<Audio> audio = std::make_shared<Audio>("../resources/audio/dixie_horn.ogg");
+			audio->play();
+		}
+			
 		
 		for (std::vector<std::shared_ptr<Entity> >::iterator it = entities.begin(); it != entities.end(); it++)
 		{

@@ -6,7 +6,7 @@ class TestScreen : public Component
 public:
 	void onInit(std::string color)
 	{
-		//std::cout << "onInit " << color << std::endl;
+		//
 	}
 
 	void onBegin()
@@ -36,18 +36,31 @@ int main()
 {
 	std::shared_ptr<Core> core = Core::initialize();
 	std::shared_ptr<Entity> background = core->addEntity();
-	std::shared_ptr<Entity> player = core->addEntity();
-	
+		
 	std::shared_ptr<TestScreen> ts = background->addComponent<TestScreen>("Test");
 	
-	std::shared_ptr<MeshResource> model = core->getResources()->load<MeshResource>("../resources/models/curuthers/curuthers.obj");
-	std::shared_ptr<TextureResource> tex = core->getResources()->load<TextureResource>("../resources/images/curuthers_diffuse.png");
+	/*
+	std::shared_ptr<Entity> cat = core->addEntity();
+	std::shared_ptr<MeshResource> catMesh = core->getResources()->load<MeshResource>("../resources/models/curuthers/curuthers.obj");
+	std::shared_ptr<MeshRenderer> modelRenderer = cat->addComponent<MeshRenderer>(catMesh);
 
-	std::shared_ptr<MeshRenderer> modelRenderer = player->addComponent<MeshRenderer>(model);
-	modelRenderer->setTexture(tex);
+	std::shared_ptr<TextureResource> catTex = core->getResources()->load<TextureResource>("../resources/images/curuthers_diffuse.png");
+	modelRenderer->setTexture(catTex);
+	*/
+
+	std::shared_ptr<Entity> hall = core->addEntity();
+	std::shared_ptr<MeshResource> hallMesh = core->getResources()->load<MeshResource>("../resources/models/re_hall/re_house_baked.obj");
+	std::shared_ptr<MeshRenderer> modelRenderer = hall->addComponent<MeshRenderer>(hallMesh);
+
+	std::shared_ptr<TextureResource> hallTex = core->getResources()->load<TextureResource>("../resources/images/re_hall_diffuse.png");
+	modelRenderer->setTexture(hallTex);
+
+
 	
+
 	//std::shared_ptr<Audio> audio = std::make_shared<Audio>("../resources/audio/dixie_horn.ogg");
-	//audio->play;
+	//audio->play();
+	
 
 	core->start();
 		

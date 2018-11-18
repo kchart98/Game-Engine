@@ -32,18 +32,18 @@ std::weak_ptr<MeshResource> MeshRenderer::getMesh()
 
 void MeshRenderer::onDisplay()
 {
-	//shader->setUniform("in_Projection", glm::perspective(glm::radians(65.0f), (float)1280 / (float)720, 0.1f, 100.f));
+	//Camera Lens
+	shader->setUniform("in_Projection", glm::perspective(45.0f, (1280.0f / 720.0f), 0.1f, 50000.0f));
 
-	glm::mat4 model(1.0f);
-	model = glm::rotate(model, glm::radians(angle), glm::vec3(0, 1, 0));
-	shader->setUniform("in_View", glm::inverse(model));	
+	//Camera Position/Orientation
+	shader->setUniform("in_View", glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, -10.0f)));
 	
-	model = glm::mat4(1.0f);
+	//Model Position/Orientation
+	glm::mat4 model(1.0f);
 	model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(angle), glm::vec3(0, 1, 0));
 	shader->setUniform("in_Model", model);	
-
-	shader->setUniform("in_Projection", glm::mat4(1.0f));
-
+	
 	shader->draw(mesh);
 	angle += 0.1f;
 }

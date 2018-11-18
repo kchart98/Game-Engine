@@ -3,7 +3,6 @@ uniform mat4 in_View;
 uniform mat4 in_Model;
 
 attribute vec3 in_Position;
-attribute vec4 in_Color;
 attribute vec2 in_TexCoord;
 
 varying vec2 ex_TexCoord;
