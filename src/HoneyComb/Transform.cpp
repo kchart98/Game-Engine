@@ -43,9 +43,9 @@ void Transform::translate(glm::vec3 translation)
 	//localPosition = localPosition + glm::vec3(fwd);
 }
 
-void Transform::rotate(glm::vec3 position)
+void Transform::rotate(glm::vec3 rotation)
 {
-	float a = atan2(this->localPosition.z - position.z, this->localPosition.x - position.x);
+	float a = atan2(this->localPosition.z - rotation.z, this->localPosition.x - rotation.x);
 	localRotation.y = 90 + a * 180.0f / 3.14f;
 }
 

@@ -11,16 +11,17 @@ class Transform : public Component
 	glm::vec3 localScale;
 
 public:
-	
-	glm::vec3 getPosition();
-	glm::vec3 getRotation();
-	glm::mat4 getModelMatrix();
 
 	void setLocalPosition(glm::vec3 position);
 	void setLocalRotation(glm::vec3 rotation);
 	void setLocalScale(glm::vec3 scale);
 
+	glm::vec3 getPosition();
+	glm::vec3 getRotation();
+	glm::mat4 getModelMatrix();
+	
 	void translate(glm::vec3 translation);
-	void rotate(glm::vec3 position);
+	void rotate(glm::vec3 rotation);
+	void scale(glm::vec3 scale);
 };
 
